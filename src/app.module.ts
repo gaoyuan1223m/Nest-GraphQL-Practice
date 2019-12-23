@@ -9,9 +9,13 @@ import { MongooseModule } from "@nestjs/mongoose";
   imports: [
     ItemsModule,
     GraphQLModule.forRoot({ autoSchemaFile: 'schema.gql' }),
-    MongooseModule.forRoot('mongodb://localhost:27017/nestgraphql')
+    MongooseModule.forRoot('mongodb://localhost:27017/nestgraphql', { useNewUrlParser: true, useUnifiedTopology: true })
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [
+    AppController
+  ],
+  providers: [
+    AppService
+  ],
 })
 export class AppModule { }

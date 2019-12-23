@@ -3,7 +3,7 @@ import * as request from 'supertest';
 import { ItemsModule } from '../src/items/items.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ItemInput } from 'src/items/input/items.input';
+import { ItemInputCreate, ItemInputUpdate } from 'src/items/input/items.input';
 
 describe('ItemsController (e2e)', () => {
     let app;
@@ -26,7 +26,7 @@ describe('ItemsController (e2e)', () => {
         await app.close();
     });
 
-    const item: ItemInput = {
+    const item: ItemInputCreate = {
         title: 'Great item',
         price: 10,
         description: 'Description of this great item',
@@ -34,7 +34,7 @@ describe('ItemsController (e2e)', () => {
 
     let id: string = '';
 
-    const updatedItem: ItemInput = {
+    const updatedItem: ItemInputUpdate = {
         title: 'Great updated item',
         price: 20,
         description: 'Updated description of this great item',

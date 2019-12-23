@@ -3,10 +3,16 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-input ItemInput {
+input ItemInputCreate {
   title: String!
   price: Int!
-  description: String!
+  description: String
+}
+
+input ItemInputUpdate {
+  title: String
+  price: Int
+  description: String
 }
 
 type ItemType {
@@ -17,8 +23,8 @@ type ItemType {
 }
 
 type Mutation {
-  createItem(input: ItemInput!): ItemType!
-  updateItem(input: ItemInput!, id: String!): ItemType!
+  createItem(input: ItemInputCreate!): ItemType!
+  updateItem(input: ItemInputUpdate!, id: String!): ItemType!
   deleteItem(id: String!): ItemType!
 }
 

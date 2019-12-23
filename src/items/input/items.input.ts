@@ -1,7 +1,7 @@
 import { InputType, Field, Int } from 'type-graphql';
 
 @InputType()
-export class ItemInput {
+export class ItemInputCreate {
 
     @Field()
     readonly title: string;
@@ -9,6 +9,21 @@ export class ItemInput {
     @Field(() => Int)
     readonly price: number;
 
-    @Field()
-    readonly description: string;
+    @Field({ nullable: true })
+    readonly description?: string;
+
+}
+
+@InputType()
+export class ItemInputUpdate {
+
+    @Field({ nullable: true })
+    readonly title?: string;
+
+    @Field(() => Int, { nullable: true })
+    readonly price?: number;
+
+    @Field({ nullable: true })
+    readonly description?: string;
+
 }

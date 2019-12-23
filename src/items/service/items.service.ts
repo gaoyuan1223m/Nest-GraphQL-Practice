@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ItemType } from '../dto/create-item.dto';
+import { ItemType } from '../dto/item.dto';
 import { Item } from '../interface/item.interface';
-import { ItemInput } from '../input/items.input';
+import { ItemInputCreate, ItemInputUpdate } from '../input/items.input';
 
 @Injectable()
 export class ItemsService {
@@ -12,7 +12,7 @@ export class ItemsService {
         @InjectModel('Item') private itemModel: Model<Item>
     ) { }
 
-    async create(createItemDto: ItemInput): Promise<ItemType> {
+    async create(createItemDto: ItemInputCreate): Promise<ItemType> {
         const createdItem = new this.itemModel(createItemDto);
         return await createdItem.save();
     }
@@ -29,7 +29,7 @@ export class ItemsService {
         return await this.itemModel.findByIdAndRemove(id);
     }
 
-    async update(id: string, item: ItemInput): Promise<ItemType> {
+    async update(id: string, item: ItemInputUpdate): Promise<ItemType> {
         return await this.itemModel.findByIdAndUpdate(id, item, { new: true });
     }
 }
